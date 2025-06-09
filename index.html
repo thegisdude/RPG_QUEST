@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Adventures of Wulfgar & Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 4px solid #e74c3c;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #34495e;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        nav button.active {
+            background: #27ae60;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .character-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .character-image {
+            width: 100%;
+            height: 250px;
+            background: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-style: italic;
+            border-bottom: 3px solid #3498db;
+            overflow: hidden;
+        }
+
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .character-info {
+            padding: 1.5rem;
+        }
+
+        .character-name {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .character-details {
+            margin-bottom: 1rem;
+        }
+
+        .character-details span {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-description {
+            color: #5d6d7e;
+            line-height: 1.5;
+        }
+
+        .antagonist-card {
+            border: 2px solid #e74c3c;
+        }
+
+        .antagonist-card .character-image {
+            border-bottom-color: #e74c3c;
+        }
+
+        .antagonist-card .character-details span {
+            background: #e74c3c;
+        }
+
+        .game-board-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .board-image {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: #ecf0f1;
+            border: 2px dashed #bdc3c7;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin: 1rem auto;
+        }
+
+        .transcript-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .session-header {
+            background: #3498db;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .dialogue {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-left: 4px solid #e74c3c;
+            background: #f8f9fa;
+        }
+
+        .speaker {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .dm-text {
+            border-left-color: #27ae60;
+            background: #eafaf1;
+        }
+
+        .action-text {
+            font-style: italic;
+            color: #7f8c8d;
+            margin: 0.5rem 0;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: #5d6d7e;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .visual-timeline {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .visual-timeline h3 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-item:nth-child(even) {
+            border-left-color: #3498db;
+        }
+
+        .timeline-item:nth-child(even) .timeline-image {
+            order: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            order: 1;
+        }
+
+        .timeline-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: #ecf0f1;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .timeline-content {
+            padding: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: #5d6d7e;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .epilogue-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .epilogue-section h3 {
+            color: #ecf0f1;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .epilogue-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ecf0f1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-image {
+                order: 1;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                order: 2;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            nav button {
+                margin: 0.25rem;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Add active class to the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+
+    <div class="container">
+        <header>
+            <h1>⚔️ The Adventures of Wulfgar & Company ⚔️</h1>
+            <p>An Epic RPG Journey</p>
+        </header>
+
+        <nav>
+            <button class="nav-btn active" onclick="showSection('overview')">Overview</button>
+            <button class="nav-btn" onclick="showSection('characters')">Characters</button>
+            <button class="nav-btn" onclick="showSection('game-board')">Game Board</button>
+            <button class="nav-btn" onclick="showSection('transcript')">Adventure Log</button>
+            <button class="nav-btn" onclick="showSection('epilogue')">Epilogue</button>
+        </nav>
+
+        <div class="content">
+            <div id="overview" class="section active">
+                <h2>🏰 Adventure Overview</h2>
+                <p class="intro-text">Welcome to the epic tale of heroes brought together by fate and forged by adventure!</p>
+                
+                <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <h3>The Story So Far</h3>
+                    <p>In the frosty lands of the North, destiny called forth unlikely heroes. Wulfgar Ironfist, a battle-hardened barbarian seeking vengeance for his fallen village, found his path intertwined with companions who would become his brothers-in-arms.</p>
+                    
+                    <p>Together with Tyrone Blackrod and Nodrog Son of Nodrog, they were summoned before the mystical being Zargon, who recognized in them the potential to become legends. Their quest would take them through treacherous dungeons, face ancient evils, and test the very bonds of their friendship.</p>
+                    
+                    <p>This is their story...</p>
+                </div>
+            </div>
+
+            <div id="characters" class="section">
+                <h2>⚔️ The Heroes</h2>
+                <div class="character-grid">
+                    <div class="character-card">
+                        <div class="character-image">
+                            Character Portrait Coming Soon
+                        </div>
+                        <div class="character-info">
+                            <div class="character-name">Wulfgar Ironfist</div>
+                            <div class="character-details">
+                                <span>Age 38</span>
+                                <span>Barbarian</span>
+                                <span>6'5" Warrior</span>
+                            </div>
+                            <div class="character-description">
+                                <strong>Physical:</strong> A towering barbarian with a muscular frame, clean-shaven head, and greying beard. His piercing blue eyes reflect years of battle, and he wears scarred steel armor with a wolf-crested helmet.<br><br>
+                                
+                                <strong>Background:</strong> Born in the harsh North, raised by warrior clans. After orcs destroyed his village, he embarked on a quest for vengeance that led him to his current companions.<br><br>
+                                
+                                <strong>Personality:</strong> A man of few words who lets his actions speak. Deeply suspicious of magic, fiercely loyal to friends, and lives for the glory of battle. His stoic nature hides a sharp mind and unbreakable spirit.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="character-image">
+                            Character Portrait Coming Soon
+                        </div>
+                        <div class="character-info">
+                            <div class="character-name">Tyrone Blackrod</div>
+                            <div class="character-details">
+                                <span>Age 210</span>
+                                <span>Elf</span>
+                                <span>Rogue/Mage</span>
+                            </div>
+                            <div class="character-description">
+                                <strong>Physical:</strong> A dashing middle-aged elf with a swashbuckling air, lean build, perpetual five o'clock shadow, and squinty street-smart blue eyes. Wears tattered leather jerkin, carries enchanted arrows and a rapier. Think Bruce Campbell meets elven ranger.<br><br>
+                                
+                                <strong>Background:</strong> From Elftown's bustling streets, rejected high society for the shadows. Learned thievery and charm from the city's underbelly before discovering magical abilities. A mysterious mentor taught him arcane ways, shaping him into a formidable hero.<br><br>
+                                
+                                <strong>Personality:</strong> Cocky and wisecracking with a heart of gold. Sharp tongue and sardonic humor can charm or cut down. Fiercely loyal despite his bravado. Master of improvisation who turns every situation into a thrilling escapade.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="character-image">
+                            Character Portrait Coming Soon
+                        </div>
+                        <div class="character-info">
+                            <div class="character-name">Nodrog Son of Nodrog</div>
+                            <div class="character-details">
+                                <span>Age 130</span>
+                                <span>Dwarf</span>
+                                <span>Warrior/Treasure Hunter</span>
+                            </div>
+                            <div class="character-description">
+                                <strong>Physical:</strong> 4'5" tall with thick muscular build, dark auburn hair, salt-and-pepper beard, piercing blue eyes, and wry smile. Calloused hands from years of axe-wielding, maintains clean sturdy leather armor. Resembles Wil Wheaton with the unmistakable visage of adventure etched into his middle-aged features.<br><br>
+                                    
+                                <strong>Background:</strong> Born into a family of renowned treasure hunters and ale connoisseurs, Nodrog was destined for a life of adventure. His father, Nodrog the Elder, was lost in a quest to conquer the dreaded dungeons of Zargon, leaving behind tales of valor and a legacy of unfinished business. Raised in the bustling underground city of Stonehold, where the clang of hammer on anvil was as common as tavern laughter, Nodrog learned the art of the blacksmith and the subtleties of diplomacy in crowded pubs and markets. His mother, a fierce warrior in her own right, taught him the importance of honor and the strength of family bonds. His lineage was one of craftsmen and heroes, raised on epic ballads of ancestral deeds.<br><br>
+                                    
+                                <strong>Personality:</strong> Nodrog is a cheerful, hearty soul who approaches life with a pint-sized optimism that belies his formidable combat skills. He's a lover of fine ales, tall tales, and a good laugh, often using humor to diffuse tense situations. His loyalty to his comrades is unshakeable, and he's not above risking his own hide for a friend in need. Beneath the jovial exterior lies a sharp mind and a fierce warrior's spirit - stubbornly resilient and never backing down from a challenge, especially when it involves defending his honor or the treasure he seeks. His love for ale is matched only by his love for battle, and he's been known to toast the memory of defeated foes with the very beverage they were too slow to claim. His optimism is as boundless as the caverns he explores, facing each new challenge with a grin and a mug held high.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card antagonist-card">
+                        <div class="character-image">
+                            Character Portrait Coming Soon
+                        </div>
+                        <div class="character-info">
+                            <div class="character-name">Zargon the Sorcerer</div>
+                            <div class="character-details">
+                                <span>Middle-aged</span>
+                                <span>Human</span>
+                                <span>Dungeon Master/Antagonist</span>
+                            </div>
+                            <div class="character-description">
+                                <strong>Physical:</strong> A commanding figure with piercing blue eyes that flicker with inner fire. His blonde hair is trimmed with refinement, while luxurious robes of dark purple and gold adorned with dancing runes speak to his arcane mastery. An ancient wooden staff topped with an opaque crystal serves as his conduit of power.<br><br>
+                                
+                                <strong>Background:</strong> Once a hero corrupted by the very power he sought to control, Zargon's journey into the arcane led him down a path of madness and ambition. After being defeated by the legendary Rogar, he now plots his return from his twisted dungeon, weaving grand designs that only he can fully comprehend. His soul is a tapestry of shadow and ambition.<br><br>
+                                
+                                <strong>Personality:</strong> A master of dramatic theatrics who revels in his role as dungeon master. Impatient with those who fail to grasp his schemes, he taunts enemies with smug superiority while maintaining a twisted code of honor. His voice thunders through his domain, driven by an insatiable hunger for knowledge and power. Despite his corruption, a spark of his former heroic self lingers, making him a complex and fascinating adversary who challenges heroes through wit and strategy rather than mere brute force.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-board" class="section">
+                <h2>🗺️ Game Board & Maps</h2>
+                <div class="game-board-section">
+                    <div class="board-image">
+                        Game Board Image Coming Soon
+                    </div>
+                    <p>This is where maps, battle grids, and visual references for our adventures will be displayed.</p>
+                </div>
+            </div>
+
+            <div id="transcript" class="section">
+                <h2>📜 Adventure Log</h2>
+                
+                <!-- Visual Timeline Section -->
+                <div class="visual-timeline">
+                    <h3>🎬 Epic Moments</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-image">
+                                Epic Moment Image Placeholder
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">📖 The Summoning Begins</div>
+                                <div class="timeline-description">
+                                    In his arcane sanctum, the powerful and enigmatic Zargon opens his ancient tome of power. Golden flames dance around the mystical pages as he prepares to summon forth three unlikely heroes - Wulfgar, Tyrone, and Nodrog. With his ornate purple robes and commanding presence, Zargon sets in motion the events that will test the very souls of these adventurers. The adventure begins with the turn of a page and the whisper of ancient magic.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-image">
+                                Epic Battle Image Placeholder
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">⚔️ Wulfgar's Monster Mayhem</div>
+                                <div class="timeline-description">
+                                    The mighty barbarian Wulfgar Ironfist unleashes his legendary battle fury against a horde of undead horrors. His massive blade cleaves through skeletal warriors and ancient monstrosities alike, proving why the northmen are feared throughout the realm. With his wolf-crested helm and battle-scarred armor, Wulfgar embodies the raw power of a true warrior facing the darkness.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-image">
+                                Dwarf Battle Image Placeholder
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">🪓 Nodrog's Undead Crusher</div>
+                                <div class="timeline-description">
+                                    The stout-hearted dwarf Nodrog Son of Nodrog faces the shambling undead with characteristic determination and his trusty weapon. His muscular frame and battle-tested skills prove that size matters not when courage and ale-fueled fury drive a true warrior. Even against the relentless zombie hordes, Nodrog's optimistic grin never fades as he carves through rotting flesh with dwarven precision.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="transcript-section">
+                    <div class="session-header">
+                        <h3>Hero Quest Adventure: The Return of Zargon</h3>
+                        <p>A Turn-Based Epic | The Complete Adventure Log</p>
+                    </div>
+                    
+                    <div class="dialogue dm-text">
+                        <div class="speaker">Zargon's Opening Declaration:</div>
+                        <p>"Zargon's legions threatened us once before, but then it was Rogar who aided me and defeated them. Now they are on the march again. Already they have assailed the borderlands. The realm must again look for heroes, isn't this right? I have trained you. Each of you must complete the 14 quests. If you do this... You will be acclaimed as champions of the realm and dubbed sovereign knights. Only then will you be on the road to becoming true heroes."</p>
+                    </div>
+
+                    <h3>📖 Turn 1-2: The Adventure Begins</h3>
+                    
+                    <div class="dialogue">
+                        <div class="speaker">Turn 1a - Tyrone Blackrod:</div>
+                        <p><strong>Action:</strong> Casts Rock Skin spell</p>
+                        <div class="action-text">The elf bolsters his defenses with ancient magic, his skin taking on a stone-like resilience.</div>
+                    </div>
+
+                    <div class="dialogue">
+                        <div class="speaker">Turn 1b - Wulfgar:</div>
+                        <p><strong>Action:</strong> Stares critically at Tyrone Blackrod</p>
+                        <div class="action-text">The barbarian furrows his brow, arms crossed, watching the magic with typical warrior skepticism.</div>
+                    </div>
+
+                    <div class="dialogue">
+                        <div class="speaker">Turn 1c - Nodrog Son of Nodrog:</div>
+                        <p><strong>Action:</strong> Searches for secret corridor, finds none, grabs ale instead</p>
+                        <div class="action-text">"Bah! If there's no secret door, at least there's good drink!" The dwarf grumbles in frustration, reaching into his pack for a sturdy mug.</div>
+                    </div>
+
+                    <div class="dialogue dm-text">
+                        <div class="speaker">Zargon's Response:</div>
+                        <p>"The elf bolsters his defenses. Clever - he'll need that protection in the trials ahead."</p>
+                    </div>
+
+                    <h3>⚔️ Turn 2-5: First Blood</h3>
+
+                    <div class="dialogue">
+                        <div class="speaker">Turn 2a - Tyrone Blackrod:</div>
+                        <p><strong>Action:</strong> Opens door, revealing 2 Goblins positioned at a table</p>
+                    </div>
+
+                    <div class="dialogue dm-text">
+                        <div class="speaker">Zargon:</div>
+                        <p>"My goblin scouts have been discovered! Let's see how these 'heroes' handle even my weakest minions."</p>
+                    </div>
+
+                    <div class="dialogue">
+                        <div class="speaker">Combat Sequence:</div>
+                        <p><strong>Tyrone:</strong> Attacks Goblin #1 - partial hit (Black shield and skull rolled)<br>
+                        <strong>Nodrog:</strong> Attacks same goblin - 2 hits, severely wounded<br>
+                        <strong>Wulfgar:</strong> Attacks Goblin #2 - 2 hits, severely wounded</p>
+                    </div>
+
+                    <div class="dialogue dm-text">
+                        <div class="speaker">Zargon's Thoughts:</div>
+                        <p>"These heroes are more capable than expected. My goblins won't last long."</p>
+                    </div>
+
+                    <h3>🏃‍♂️ Turn 3-5: The Chase and the Abomination</h3>
+
+                    <div class="dialogue">
+                        <div class="speaker">Turn 3 - Tyrone's Discovery:</div>
+                        <p><strong>Action:</strong> Opens door across corridor, reveals chamber with Abomination and Orc!</p>
+                        <div class="action-text">Tyrone immediately slams the door shut: "Wise choice, elf. But you cannot hide forever," Zargon chuckles.</div>
+                    </div>
+
+                    <div class="dialogue">
+                        <div class="speaker">Turn 4 - The Split:</div>
+                        <p><strong>Nodrog:</strong> Splits from party, heads down different corridor<br>
+                        <strong>Zargon's Response:</strong> Abomination gives chase</p>
+                        <div class="action-text">"Divide and conquer - the classic approach!" Zargon declares with glee.</div>
+                    </div>
+
+                    <div class="dialogue">
+                        <div class="speaker">Turn 5 - Victory Against the Beast:</div>
+                        <p><strong>Zargon's Abomination:</strong> Attacks Nodrog for 1 hit - Nodrog down to 6 body points<br>
+                        <strong>Tyrone:</strong> Delivers killing blow to Abomination<br>
+                        <strong>Wulfgar:</strong> Slays the Orc with a single devastating strike</p>
+                    </div>
+
+                    <div class="dialogue dm-text">
+                        <div class="speaker">Zargon's Dismay:</div>
+                        <p>"No! My prized beast falls to elven steel! The barbarian's strength is formidable. I underestimated him."</p>
+                    </div>
+
+                    <h3>💀 Turn 7-11: The Dread Warriors</h3>
+
+                    <div class="dialogue">
+                        <div class="speaker">Tyrone's Boast:</div>
+                        <p>"The beast fought savagely, its strength unmatched, but it was no match for keen strategy and the steel of heroes."</p>
+                    </div>
+
+                    <div class="dialogue">
+                        <div class="speaker">Turn 7 - New Threat:</div>
+                        <p><strong>Tyrone:</strong> Opens new room, revealing 2 Dread Warriors</p>
+                    </div>
+
+                    <div class="dialogue dm-text">
+                        <div class="speaker">Zargon's Confidence:</div>
+                        <p>"Now they face my elite undead! These are no mere goblins!"</p>
+                    </div>
+
+                    <div class="dialogue">
+                        <div class="speaker">The Battle Unfolds:</div>
+                        <p><strong>Nodrog:
