@@ -551,155 +551,599 @@
                 </div>
             </div>
 
-            <div id="transcript" class="section">
-                <h2>📜 Adventure Log</h2>
-                
-                <!-- Visual Timeline Section -->
-                <div class="visual-timeline">
-                    <h3>🎬 Epic Moments</h3>
-                    <div class="timeline-container">
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                Epic Moment Image Placeholder
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">📖 The Summoning Begins</div>
-                                <div class="timeline-description">
-                                    In his arcane sanctum, the powerful and enigmatic Zargon opens his ancient tome of power. Golden flames dance around the mystical pages as he prepares to summon forth three unlikely heroes - Wulfgar, Tyrone, and Nodrog. With his ornate purple robes and commanding presence, Zargon sets in motion the events that will test the very souls of these adventurers. The adventure begins with the turn of a page and the whisper of ancient magic.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                Epic Battle Image Placeholder
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">⚔️ Wulfgar's Monster Mayhem</div>
-                                <div class="timeline-description">
-                                    The mighty barbarian Wulfgar Ironfist unleashes his legendary battle fury against a horde of undead horrors. His massive blade cleaves through skeletal warriors and ancient monstrosities alike, proving why the northmen are feared throughout the realm. With his wolf-crested helm and battle-scarred armor, Wulfgar embodies the raw power of a true warrior facing the darkness.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                Dwarf Battle Image Placeholder
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-title">🪓 Nodrog's Undead Crusher</div>
-                                <div class="timeline-description">
-                                    The stout-hearted dwarf Nodrog Son of Nodrog faces the shambling undead with characteristic determination and his trusty weapon. His muscular frame and battle-tested skills prove that size matters not when courage and ale-fueled fury drive a true warrior. Even against the relentless zombie hordes, Nodrog's optimistic grin never fades as he carves through rotting flesh with dwarven precision.
-                                </div>
-                            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Log Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+            padding: 2rem;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .visual-timeline {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .visual-timeline h3 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-item:nth-child(even) {
+            border-left-color: #3498db;
+        }
+
+        .timeline-item:nth-child(even) .timeline-image {
+            order: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            order: 1;
+        }
+
+        .timeline-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: #ecf0f1;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .timeline-content {
+            padding: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: #5d6d7e;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .transcript-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .session-header {
+            background: #3498db;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .dialogue {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-left: 4px solid #e74c3c;
+            background: #f8f9fa;
+        }
+
+        .speaker {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .dm-text {
+            border-left-color: #27ae60;
+            background: #eafaf1;
+        }
+
+        .action-text {
+            font-style: italic;
+            color: #7f8c8d;
+            margin: 0.5rem 0;
+        }
+
+        .epilogue-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .epilogue-section h3 {
+            color: #ecf0f1;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .epilogue-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ecf0f1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .combat-sequence {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .hero-quote {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        .final-status {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .final-status h4 {
+            color: #155724;
+            margin-bottom: 1rem;
+        }
+
+        .final-status ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .final-status li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #c3e6cb;
+        }
+
+        .final-status li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-image {
+                order: 1;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                order: 2;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>📜 Adventure Log</h2>
+        
+        <!-- Visual Timeline Section -->
+        <div class="visual-timeline">
+            <h3>🎬 Epic Moments</h3>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-image">
+                        Epic Moment Image Placeholder
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">📖 The Summoning Begins</div>
+                        <div class="timeline-description">
+                            In his arcane sanctum, the powerful and enigmatic Zargon opens his ancient tome of power. Golden flames dance around the mystical pages as he prepares to summon forth three unlikely heroes - Wulfgar, Tyrone, and Nodrog. With his ornate purple robes and commanding presence, Zargon sets in motion the events that will test the very souls of these adventurers. The adventure begins with the turn of a page and the whisper of ancient magic.
                         </div>
                     </div>
                 </div>
                 
-                <div class="transcript-section">
-                    <div class="session-header">
-                        <h3>Hero Quest Adventure: The Return of Zargon</h3>
-                        <p>A Turn-Based Epic | The Complete Adventure Log</p>
+                <div class="timeline-item">
+                    <div class="timeline-image">
+                        Epic Battle Image Placeholder
                     </div>
-                    
-                    <div class="dialogue dm-text">
-                        <div class="speaker">Zargon's Opening Declaration:</div>
-                        <p>"Zargon's legions threatened us once before, but then it was Rogar who aided me and defeated them. Now they are on the march again. Already they have assailed the borderlands. The realm must again look for heroes, isn't this right? I have trained you. Each of you must complete the 14 quests. If you do this... You will be acclaimed as champions of the realm and dubbed sovereign knights. Only then will you be on the road to becoming true heroes."</p>
+                    <div class="timeline-content">
+                        <div class="timeline-title">⚔️ Wulfgar's Monster Mayhem</div>
+                        <div class="timeline-description">
+                            The mighty barbarian Wulfgar Ironfist unleashes his legendary battle fury against a horde of undead horrors. His massive blade cleaves through skeletal warriors and ancient monstrosities alike, proving why the northmen are feared throughout the realm. With his wolf-crested helm and battle-scarred armor, Wulfgar embodies the raw power of a true warrior facing the darkness.
+                        </div>
                     </div>
-
-                    <h3>📖 Turn 1-2: The Adventure Begins</h3>
-                    
-                    <div class="dialogue">
-                        <div class="speaker">Turn 1a - Tyrone Blackrod:</div>
-                        <p><strong>Action:</strong> Casts Rock Skin spell</p>
-                        <div class="action-text">The elf bolsters his defenses with ancient magic, his skin taking on a stone-like resilience.</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-image">
+                        Dwarf Battle Image Placeholder
                     </div>
-
-                    <div class="dialogue">
-                        <div class="speaker">Turn 1b - Wulfgar:</div>
-                        <p><strong>Action:</strong> Stares critically at Tyrone Blackrod</p>
-                        <div class="action-text">The barbarian furrows his brow, arms crossed, watching the magic with typical warrior skepticism.</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">🪓 Nodrog's Undead Crusher</div>
+                        <div class="timeline-description">
+                            The stout-hearted dwarf Nodrog Son of Nodrog faces the shambling undead with characteristic determination and his trusty weapon. His muscular frame and battle-tested skills prove that size matters not when courage and ale-fueled fury drive a true warrior. Even against the relentless zombie hordes, Nodrog's optimistic grin never fades as he carves through rotting flesh with dwarven precision.
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transcript-section">
+            <div class="session-header">
+                <h3>Hero Quest Adventure: The Return of Zargon</h3>
+                <p>A Turn-Based Epic | The Complete Adventure Log</p>
+            </div>
+            
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Opening Declaration:</div>
+                <p>"Zargon's legions threatened us once before, but then it was Rogar who aided me and defeated them. Now they are on the march again. Already they have assailed the borderlands. The realm must again look for heroes, isn't this right? I have trained you. Each of you must complete the 14 quests. If you do this... You will be acclaimed as champions of the realm and dubbed sovereign knights. Only then will you be on the road to becoming true heroes."</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Turn 1c - Nodrog Son of Nodrog:</div>
-                        <p><strong>Action:</strong> Searches for secret corridor, finds none, grabs ale instead</p>
-                        <div class="action-text">"Bah! If there's no secret door, at least there's good drink!" The dwarf grumbles in frustration, reaching into his pack for a sturdy mug.</div>
-                    </div>
+            <h3>🏰 The Heroes Assembled</h3>
+            <div class="dialogue">
+                <div class="speaker">The Adventuring Party:</div>
+                <p><strong>Wulfgar the Barbarian:</strong> A stoic warrior who lets his blade do the talking<br>
+                <strong>Tyrone Blackrod:</strong> A streetwise elf with attitude and magical abilities<br>
+                <strong>Nodrog Son of Nodrog:</strong> A stout dwarf with a love for ale and battle<br>
+                <strong>Zargon:</strong> The evil sorcerer turned dungeon master, commanding his minions</p>
+            </div>
 
-                    <div class="dialogue dm-text">
-                        <div class="speaker">Zargon's Response:</div>
-                        <p>"The elf bolsters his defenses. Clever - he'll need that protection in the trials ahead."</p>
-                    </div>
+            <h3>📖 Turn 1-2: The Adventure Begins</h3>
+            
+            <div class="dialogue">
+                <div class="speaker">Turn 1a - Tyrone Blackrod:</div>
+                <p><strong>Action:</strong> Casts Rock Skin spell</p>
+                <div class="action-text">The elf bolsters his defenses with ancient magic, his skin taking on a stone-like resilience.</div>
+            </div>
 
-                    <h3>⚔️ Turn 2-5: First Blood</h3>
+            <div class="dialogue">
+                <div class="speaker">Turn 1b - Wulfgar:</div>
+                <p><strong>Action:</strong> Stares critically at Tyrone Blackrod</p>
+                <div class="action-text">The barbarian furrows his brow, arms crossed, watching the magic with typical warrior skepticism.</div>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Turn 2a - Tyrone Blackrod:</div>
-                        <p><strong>Action:</strong> Opens door, revealing 2 Goblins positioned at a table</p>
-                    </div>
+            <div class="dialogue">
+                <div class="speaker">Turn 1c - Nodrog Son of Nodrog:</div>
+                <p><strong>Action:</strong> Searches for secret corridor, finds none, grabs ale instead</p>
+                <div class="action-text">"Bah! If there's no secret door, at least there's good drink!" The dwarf grumbles in frustration, reaching into his pack for a sturdy mug.</div>
+            </div>
 
-                    <div class="dialogue dm-text">
-                        <div class="speaker">Zargon:</div>
-                        <p>"My goblin scouts have been discovered! Let's see how these 'heroes' handle even my weakest minions."</p>
-                    </div>
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Response:</div>
+                <p>"The elf bolsters his defenses. Clever - he'll need that protection in the trials ahead."</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Combat Sequence:</div>
-                        <p><strong>Tyrone:</strong> Attacks Goblin #1 - partial hit (Black shield and skull rolled)<br>
-                        <strong>Nodrog:</strong> Attacks same goblin - 2 hits, severely wounded<br>
-                        <strong>Wulfgar:</strong> Attacks Goblin #2 - 2 hits, severely wounded</p>
-                    </div>
+            <h3>⚔️ Turn 2-5: First Blood</h3>
 
-                    <div class="dialogue dm-text">
-                        <div class="speaker">Zargon's Thoughts:</div>
-                        <p>"These heroes are more capable than expected. My goblins won't last long."</p>
-                    </div>
+            <div class="dialogue">
+                <div class="speaker">Turn 2a - Tyrone Blackrod:</div>
+                <p><strong>Action:</strong> Opens door, revealing 2 Goblins positioned at a table</p>
+            </div>
 
-                    <h3>🏃‍♂️ Turn 3-5: The Chase and the Abomination</h3>
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon:</div>
+                <p>"My goblin scouts have been discovered! Let's see how these 'heroes' handle even my weakest minions."</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Turn 3 - Tyrone's Discovery:</div>
-                        <p><strong>Action:</strong> Opens door across corridor, reveals chamber with Abomination and Orc!</p>
-                        <div class="action-text">Tyrone immediately slams the door shut: "Wise choice, elf. But you cannot hide forever," Zargon chuckles.</div>
-                    </div>
+            <div class="combat-sequence">
+                <div class="speaker">Combat Sequence:</div>
+                <p><strong>Tyrone:</strong> Attacks Goblin #1 - partial hit (Black shield and skull rolled)<br>
+                <strong>Nodrog:</strong> Attacks same goblin - 2 hits, severely wounded<br>
+                <strong>Wulfgar:</strong> Attacks Goblin #2 - 2 hits, severely wounded</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Turn 4 - The Split:</div>
-                        <p><strong>Nodrog:</strong> Splits from party, heads down different corridor<br>
-                        <strong>Zargon's Response:</strong> Abomination gives chase</p>
-                        <div class="action-text">"Divide and conquer - the classic approach!" Zargon declares with glee.</div>
-                    </div>
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Thoughts:</div>
+                <p>"These heroes are more capable than expected. My goblins won't last long."</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Turn 5 - Victory Against the Beast:</div>
-                        <p><strong>Zargon's Abomination:</strong> Attacks Nodrog for 1 hit - Nodrog down to 6 body points<br>
-                        <strong>Tyrone:</strong> Delivers killing blow to Abomination<br>
-                        <strong>Wulfgar:</strong> Slays the Orc with a single devastating strike</p>
-                    </div>
+            <h3>🏃‍♂️ Turn 3-5: The Chase and the Abomination</h3>
 
-                    <div class="dialogue dm-text">
-                        <div class="speaker">Zargon's Dismay:</div>
-                        <p>"No! My prized beast falls to elven steel! The barbarian's strength is formidable. I underestimated him."</p>
-                    </div>
+            <div class="dialogue">
+                <div class="speaker">Turn 3 - Tyrone's Discovery:</div>
+                <p><strong>Action:</strong> Opens door across corridor, reveals chamber with Abomination and Orc!</p>
+                <div class="action-text">Tyrone immediately slams the door shut</div>
+            </div>
 
-                    <h3>💀 Turn 7-11: The Dread Warriors</h3>
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Amusement:</div>
+                <p>"Wise choice, elf. But you cannot hide forever."</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Tyrone's Boast:</div>
-                        <p>"The beast fought savagely, its strength unmatched, but it was no match for keen strategy and the steel of heroes."</p>
-                    </div>
+            <div class="dialogue">
+                <div class="speaker">Turn 4 - The Split:</div>
+                <p><strong>Nodrog:</strong> Splits from party, heads down different corridor<br>
+                <strong>Zargon's Response:</strong> Abomination gives chase</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">Turn 7 - New Threat:</div>
-                        <p><strong>Tyrone:</strong> Opens new room, revealing 2 Dread Warriors</p>
-                    </div>
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Strategy:</div>
+                <p>"Divide and conquer - the classic approach!"</p>
+            </div>
 
-                    <div class="dialogue dm-text">
-                        <div class="speaker">Zargon's Confidence:</div>
-                        <p>"Now they face my elite undead! These are no mere goblins!"</p>
-                    </div>
+            <div class="dialogue">
+                <div class="speaker">Turn 5 - Victory Against the Beast:</div>
+                <p><strong>Zargon's Abomination:</strong> Attacks Nodrog for 1 hit - Nodrog down to 6 body points<br>
+                <strong>Tyrone:</strong> Delivers killing blow to Abomination<br>
+                <strong>Wulfgar:</strong> Slays the Orc with a single devastating strike</p>
+            </div>
 
-                    <div class="dialogue">
-                        <div class="speaker">The Battle Unfolds:</div>
-                        <p><strong>Nodrog:
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Dismay:</div>
+                <p>"No! My prized beast falls to elven steel! The barbarian's strength is formidable. I underestimated him."</p>
+            </div>
+
+            <h3>💀 Turn 7-11: The Dread Warriors</h3>
+
+            <div class="hero-quote">
+                <div class="speaker">Tyrone's Boast:</div>
+                <p>"The beast fought savagely, its strength unmatched, but it was no match for keen strategy and the steel of heroes."</p>
+            </div>
+
+            <div class="dialogue">
+                <div class="speaker">Turn 7 - New Threat:</div>
+                <p><strong>Tyrone:</strong> Opens new room, revealing 2 Dread Warriors</p>
+            </div>
+
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Confidence:</div>
+                <p>"Now they face my elite undead! These are no mere goblins!"</p>
+            </div>
+
+            <div class="dialogue">
+                <div class="speaker">Turn 8 - The Battle Unfolds:</div>
+                <p><strong>Nodrog:</strong> Stumbles (rolled 2 on movement) - "The ale has made the dwarf clumsy!"<br>
+                <strong>Dread Warrior:</strong> Attacks Tyrone for 2 hits<br>
+                <strong>Tyrone:</strong> "Hot damn!" - Flees at full speed (rolled 11)</p>
+            </div>
+
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Surprise:</div>
+                <p>"The elf runs? Perhaps he's not as brave as he pretends!"</p>
+            </div>
+
+            <div class="dialogue">
+                <div class="speaker">Turn 9-11 - Tactical Combat:</div>
+                <p><strong>Nodrog:</strong> Retreats behind Wulfgar for protection<br>
+                <strong>Wulfgar:</strong> Engages Dread Warrior, dealing 2 hits<br>
+                <strong>Dread Warriors:</strong> Fall back to defensive positions<br>
+                <strong>Tyrone:</strong> Returns with jovial insults: "You call that swordplay, Wulfgar? I've seen goblins wield spoons more effectively!"</p>
+            </div>
+
+            <div class="combat-sequence">
+                <div class="speaker">The Final Blow:</div>
+                <p><strong>Turn 11 - Wulfgar:</strong> Delivers crippling blow - 3 hits, Dread Warrior falls<br>
+                <strong>Zargon's Defeat:</strong> "My elite warrior crumbles to barbarian steel!"</p>
+            </div>
+
+            <h3>👑 Turn 13-18: The Throne Room Battle</h3>
+
+            <div class="dialogue">
+                <div class="speaker">Turn 13 - The Grand Reveal:</div>
+                <p><strong>Tyrone:</strong> Opens next door</p>
+            </div>
+
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Pride:</div>
+                <p>"Behold Verog the Gargoyle on his massive throne, flanked by 2 Orcs and a Dread Warrior! See how you fare against true power!"</p>
+            </div>
+
+            <div class="hero-quote">
+                <div class="speaker">Tyrone's Reaction:</div>
+                <p>"Oh, nah, this ain't right! This some real bad juju!"</p>
+            </div>
+
+            <div class="dialogue">
+                <div class="speaker">Turn 14-16 - Divide and Conquer:</div>
+                <p><strong>Heroes:</strong> Split up and flee down corridor<br>
+                <strong>Tyrone:</strong> Slays pursuing Orc: "That's right, homie. Sit down."<br>
+                <strong>Wulfgar & Tyrone:</strong> Team up to defeat second Orc<br>
+                <strong>Wulfgar:</strong> Defeats final Dread Warrior</p>
+            </div>
+
+            <div class="hero-quote">
+                <div class="speaker">Tyrone's Taunt:</div>
+                <p>"Oh, come on, man! I swear, this dungeon is rigged!"</p>
+            </div>
+
+            <div class="dialogue">
+                <div class="speaker">Turn 17-18 - Confronting Verog:</div>
+                <p><strong>Wulfgar:</strong> "I'm tired of pussyfooting around!" - Moves toward Verog<br>
+                <strong>Verog:</strong> Stands and attacks, hitting Wulfgar for 2<br>
+                <strong>Tyrone:</strong> Attacks for 1 hit: "That's right, big guy, you ain't untouchable!"<br>
+                <strong>Wulfgar:</strong> Reduces Verog to 1 hit point</p>
+            </div>
+
+            <div class="combat-sequence">
+                <div class="speaker">The Fall of Verog:</div>
+                <p><strong>Verog:</strong> Strikes Tyrone for 2 hits<br>
+                <strong>Tyrone:</strong> "Oh, hell no! This stone-faced freak really out here trying to ruin my day!"<br>
+                <strong>Wulfgar:</strong> Delivers final killing blow - 2 hits<br>
+                <strong>Zargon's Anguish:</strong> "My lieutenant falls! The stone crumbles to dust!"</p>
+            </div>
+
+            <h3>💰 Turn 19: Victory and Treasure</h3>
+
+            <div class="dialogue">
+                <div class="speaker">Nodrog's Discovery:</div>
+                <p><strong>Action:</strong> Searches for treasure<br>
+                <strong>Result:</strong> 120 gold pieces!</p>
+            </div>
+
+            <div class="hero-quote">
+                <div class="speaker">Nodrog's Relief:</div>
+                <p>"Finally, some damn compensation for this mess!"</p>
+            </div>
+
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Bitterness:</div>
+                <p>"Take your coins, heroes. You've earned them in blood."</p>
+            </div>
+
+            <h3>🧟 Turn 20-28: The Wandering Encounters</h3>
+
+            <div class="dialogue">
+                <div class="speaker">Various Encounters:</div>
+                <p><strong>Turn 20:</strong> Wandering Orc appears - Wulfgar slays it immediately<br>
+                <strong>Turn 21:</strong> 2 Goblins discovered - Both eliminated after brief combat<br>
+                <strong>Turn 26:</strong> Orc and Goblin at table - Tyrone and Wulfgar make quick work of them<br>
+                <strong>Turn 28:</strong> 2 Skeleton ambush - Destroyed by the heroes</p>
+            </div>
+
+            <div class="hero-quote">
+                <div class="speaker">Tyrone's Exasperation:</div>
+                <p>"Aww, hell no. I ain't about to deal with no sneaky little goblin nonsense today!"</p>
+            </div>
+
+            <h3>🏆 Turn 29-31: The Final Battle</h3>
+
+            <div class="dialogue">
+                <div class="speaker">Turn 29 - Final Chamber:</div>
+                <p><strong>Tyrone:</strong> Opens final chamber door</p>
+            </div>
+
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Last Stand:</div>
+                <p>"My most powerful undead! Mummy and 2 Zombies await! They must not pass!"</p>
+            </div>
+
+            <div class="combat-sequence">
+                <div class="speaker">The Climactic Battle:</div>
+                <p><strong>Turn 29:</strong> Zombies attack Wulfgar - 2 hits total, Wulfgar down to 1 HP<br>
+                <strong>Mummy:</strong> Attacks and cripples Wulfgar - The mighty barbarian falls!<br>
+                <strong>Turn 30:</strong> Tyrone hits mummy, Nodrog kills zombie<br>
+                <strong>Mummy:</strong> Attacks and defeats Nodrog - The dwarf joins his companion!<br>
+                <strong>Turn 31:</strong> Tyrone stands alone against mummy and zombie</p>
+            </div>
+
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Confidence:</div>
+                <p>"The elf stands alone! Victory is within my grasp!"</p>
+            </div>
+
+            <div class="dialogue">
+                <div class="speaker">The Final Moments:</div>
+                <p><strong>Tyrone:</strong> Kills the mummy despite the odds<br>
+                <strong>Last Zombie:</strong> Hits Tyrone in final desperation<br>
+                <strong>Tyrone:</strong> Counterattacks and destroys the final zombie</p>
+            </div>
+
+            <div class="dialogue dm-text">
+                <div class="speaker">Zargon's Shock:</div>
+                <p>"Impossible! The elf stands victorious!"</p>
+            </div>
+        </div>
+
+        <div class="epilogue-section">
+            <h3>🚪 The Final Choice</h3>
+            <div class="epilogue-text">
+                <p>Faced with the final door and his fallen comrades, Tyrone Blackrod makes a fateful decision. The weight of solitude and the trials endured weigh heavily upon him. In a moment of profound reflection, he chooses to turn around and leave the dungeon behind.</p>
+                
+                <div class="hero-quote" style="margin: 2rem 0; background: rgba(255,255,255,0.1); border-left: 4px solid #ecf0f1;">
+                    <div class="speaker" style="color: #ecf0f1;">Tyrone's Reflection:</div>
+                    <p style="color: #ecf0f1;">"Maybe another day."</p>
+                </div>
+                
+                <p>And so the elf departs, carrying with him the memory of battles fought and friends who stood beside him. The final door remains unopened, its secrets safe for now. But the realm has witnessed the birth of true heroes, and their legend has only just begun.</p>
+            </div>
+        </div>
+
+        <div class="dialogue dm-text">
+            <div class="speaker">Zargon's Final Thoughts:</div>
+            <p>"The heroes retreat, but they have proven their worth. Perhaps... perhaps they truly are the champions the realm needs. The final door remains unopened, its secrets safe for now. But I sense they will return, stronger than before."</p>
+        </div>
+
+        <div class="final-status">
+            <h4>📊 Final Party Status</h4>
+            <ul>
+                <li><strong>Wulfgar Ironfist:</strong> Defeated but alive - The barbarian's legend grows</li>
+                <li><strong>Nodrog Son of Nodrog:</strong> Defeated but alive - The dwarf's courage proven</li>
+                <li><strong>Tyrone Blackrod:</strong> Victorious survivor - The elf who defied the odds</li>
+                <li><strong>Treasure Gained:</strong> 120 gold pieces - Hard-earned coin</li>
+            </ul>
+        </div>
+
+        <div class="transcript-section">
+            <div style="text-align: center; font-style: italic; color: #7f8c8d; margin-top: 2rem;">
+                <p><em>Thus ends the tale of the Return of Zargon - a victory hard-won, but a quest left unfinished. The heroes live to fight another day, and the realm's fate remains in the balance.</em></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+                            
+
+                            
