@@ -252,7 +252,7 @@
             margin-bottom: 2rem;
             font-style: italic;
         }
-       #overview .section-content {
+    #overview .section-content {
     background: white;
     padding: 2rem;
     border-radius: 10px;
@@ -260,9 +260,20 @@
 }
 
 #overview .section-content p {
-    color: #2c3e50; /* Changed from #1a252f to match other text */
+    color: #1a1a1a !important; /* Much darker for better readability */
     line-height: 1.6;
     margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+#overview .section-content h3 {
+    color: #1a1a1a !important; /* Consistent dark text */
+    margin: 1.5rem 0 1rem 0;
+}
+
+#overview .intro-text {
+    color: #1a1a1a !important; /* Override any conflicting styles */
+    font-weight: 500;
 }
 
         .visual-timeline {
