@@ -1288,35 +1288,307 @@
                 </div>
 
                 <!-- Epilogue -->
-                <div class="timeline-item">
-                    <div class="timeline-image">
-                        <div class="final-door">
-                            🚪 The Final Door
-                        </div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">🚪 Epilogue: The Final Choice</div>
-                        <div class="timeline-description">
-                            Faced with the final door and his fallen comrades, Tyrone makes a crucial decision that will define his legend. Sometimes wisdom lies not in what we conquer, but in knowing when to retreat.
-                        </div>
-                        <div class="turn-details">
-                            <div class="speaker">Tyrone's Decision:</div>
-                            <p>Chooses to turn around and leave the dungeon with his companions</p>
-                            <div class="quote">Tyrone: "Maybe another day. These brothers need healing, and the treasure's good enough for now."</div>
-                            <div class="dm-note">
-                                <strong>Zargon's Final Thoughts:</strong> "The heroes retreat, but they have proven their worth beyond question. The final door remains unopened, its secrets safe for now. But I sense they will return, stronger and more determined than before. The Brotherhood has been forged in battle."
-                            </div>
-                            <div class="speaker">Final Status:</div>
-                            <p><strong>Wulfgar:</strong> Defeated but alive, carried by Tyrone<br>
-                            <strong>Nodrog:</strong> Defeated but alive, supported by his brothers<br>
-                            <strong>Tyrone:</strong> Victorious survivor and hero of the hour<br>
-                            <strong>Treasure:</strong> 120 gold pieces to fund future adventures</p>
-                        </div>
-                    </div>
-                </div>
+               <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Epilogue</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #e2e8f0;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.6) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 2px solid #3b82f6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .timeline-item:nth-child(even) {
+            border-color: #f97316;
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+        }
+        
+        .timeline-item:nth-child(even):hover {
+            box-shadow: 0 12px 40px rgba(249, 115, 22, 0.3);
+        }
+        
+        .timeline-image {
+            flex: 0 0 280px;
+            margin-right: 20px;
+        }
+        
+        .timeline-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid #60a5fa;
+            transition: border-color 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-image img {
+            border-color: #fb923c;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            border-radius: 12px;
+            border: 3px solid #60a5fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e2e8f0;
+            font-style: italic;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-item:nth-child(even) .photo-placeholder {
+            border-color: #fb923c;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-title {
+            font-size: 1.4em;
+            color: #60a5fa;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-title {
+            color: #fb923c;
+        }
+        
+        .timeline-description {
+            line-height: 1.6;
+            color: #cbd5e1;
+            font-size: 1.05em;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #f1f5f9;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(30, 58, 138, 0.3) 100%);
+            padding: 15px;
+            border-left: 4px solid #60a5fa;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .timeline-item:nth-child(even) .quote {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(154, 52, 18, 0.3) 100%);
+            border-left-color: #fb923c;
+        }
+        
+        .turn-details {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .timeline-item:nth-child(even) .turn-details {
+            border-color: rgba(249, 115, 22, 0.3);
+        }
 
+        .speaker {
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+            font-size: 1.05em;
+        }
+        
+        .timeline-item:nth-child(even) .speaker {
+            color: #fb923c;
+        }
+
+        .dm-note {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 58, 138, 0.25) 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 0.8rem 1.2rem;
+            margin: 0.8rem 0;
+            border-radius: 6px;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+        
+        .timeline-item:nth-child(even) .dm-note {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(154, 52, 18, 0.25) 100%);
+            border-left-color: #f97316;
+        }
+        
+        .concept-art {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            border: 3px solid #9f7aea;
+            color: #e2e8f0;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .timeline-item {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .timeline-image {
+                flex: none;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline-container">
+        
+        <!-- Nodrog's Recovery & Celebration -->
+        <div class="timeline-item">
+            <div class="timeline-image">
+                <div class="photo-placeholder">
+                    [Photo: Nodrog celebrating at tavern with multiple tankards, laughing heartily with other patrons]
+                </div>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-title">🍺 Nodrog's Recovery: The Ale-Fueled Celebration</div>
+                <div class="timeline-description">
+                    Within days of their return, Nodrog's dwarven constitution has him back on his feet. The local tavern becomes his second home as he regales fellow adventurers with tales of their dungeon conquest.
+                </div>
+                <div class="turn-details">
+                    <div class="speaker">At The Prancing Pony Tavern:</div>
+                    <p>Nodrog orders his fifth tankard of the evening, wounds fully healed through the magic of dwarven ale and good company.</p>
+                    <div class="quote">"Aye, and then the stone beast came at us with fists like boulders! But did we flee? HAH! We stood our ground like true warriors!"</div>
+                    <p>He slams his tankard down, foam spilling across the wooden table as the tavern crowd cheers. His eyes sparkle with the joy of survival and the promise of future adventures.</p>
+                </div>
             </div>
         </div>
+
+        <!-- Wulfgar's Challenge -->
+        <div class="timeline-item">
+            <div class="timeline-image">
+                <div class="photo-placeholder">
+                    [Photo: Wulfgar arm wrestling a young adventurer, crowd gathered around, intense concentration on both faces]
+                </div>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-title">💪 Wulfgar's Challenge: Test of Strength</div>
+                <div class="timeline-description">
+                    Recovered from his battle wounds, Wulfgar draws the attention of a cocky young fighter seeking to make his reputation. The tavern's arm wrestling table becomes an arena of honor.
+                </div>
+                <div class="turn-details">
+                    <div class="speaker">The Challenge:</div>
+                    <p>A brash young warrior approaches Wulfgar, boasting of his strength. The barbarian's eyes narrow with interest rather than anger.</p>
+                    <div class="quote">"You think dungeon fighting makes you strong, old man? Let's see what those scars really earned you."</div>
+                    <div class="speaker">Wulfgar's Response:</div>
+                    <p>Without a word, Wulfgar rolls up his sleeve, revealing battle-hardened muscle. His grip is steady, his gaze unwavering.</p>
+                    <div class="quote">"Boy, I've crushed gargoyle stone. Your arm will be easier."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tyrone's Company -->
+        <div class="timeline-item">
+            <div class="timeline-image">
+                <div class="photo-placeholder">
+                    [Photo: Tyrone sitting confidently between two attractive tavern wenches, all three laughing, coins and drinks on the table]
+                </div>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-title">😏 Tyrone's Charm: Hero's Welcome</div>
+                <div class="timeline-description">
+                    The elven hero basks in well-deserved attention from the tavern's finest company. His wit and tales of solo victory against the mummy have made him quite the celebrity.
+                </div>
+                <div class="turn-details">
+                    <div class="speaker">The Hero's Table:</div>
+                    <p>Two beautiful tavern wenches flank the charismatic elf, hanging on his every word as he recounts the climactic battle.</p>
+                    <div class="quote">Tyrone: "And there I was, standing alone against ancient evil itself. The mummy's curse had dropped my brothers, but this elf? This elf don't quit."</div>
+                    <div class="speaker">The Ladies:</div>
+                    <p>They lean closer, eyes wide with admiration. One traces the outline of his pointed ear while the other refills his wine cup.</p>
+                    <div class="quote">"Tell us again about the final blow, brave Tyrone. How did you destroy such a terrible monster?"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zargon's Contemplation -->
+        <div class="timeline-item">
+            <div class="timeline-image">
+                <div class="photo-placeholder">
+                    [Photo: Zargon in his dark tower, studying ancient tomes and maps, magical energies swirling around crystal orbs]
+                </div>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-title">🔮 Zargon's Plotting: The Next Challenge</div>
+                <div class="timeline-description">
+                    In his mystical sanctum, Zargon reviews the heroes' performance with grudging respect. Their retreat showed wisdom, but he knows they will return. Preparation for greater challenges begins.
+                </div>
+                <div class="turn-details">
+                    <div class="speaker">In the Sorcerer's Tower:</div>
+                    <p>Zargon's crystal ball swirls with visions of the celebrating heroes. His expression is thoughtful, calculating.</p>
+                    <div class="dm-note">"They have proven themselves worthy of greater trials. The dwarf's resilience, the barbarian's strength, the elf's cunning... yes, they will return."</div>
+                    <div class="speaker">The Next Phase:</div>
+                    <p>Ancient tomes float around him as he researches deadlier creatures and more complex traps. The final door was merely the beginning.</p>
+                    <div class="quote">"Let them celebrate their small victory. When they return, I shall have prepared challenges that will truly test their brotherhood. The 14 quests await, and each will be more perilous than the last."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Future Adventures Concept -->
+        <div class="timeline-item">
+            <div class="timeline-image">
+                <div class="photo-placeholder concept-art">
+                    [Concept Art: The three heroes standing before a massive fortress gate, weapons drawn, determination in their eyes, with Zargon's tower looming in the background]
+                </div>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-title">🚪 The Promise of Return: Brotherhood Forged</div>
+                <div class="timeline-description">
+                    The bonds forged in dungeon darkness have created more than allies—they have created brothers. The tavern celebration is temporary; adventure calls to their hearts like a siren song.
+                </div>
+                <div class="turn-details">
+                    <div class="speaker">The Unspoken Vow:</div>
+                    <p>Though they feast and celebrate tonight, each hero knows this is merely an interlude. The final door remains unopened, its secrets calling to them.</p>
+                    <div class="dm-note">
+                        <strong>The Chronicle Continues:</strong> "The Bold Brotherhood has tasted victory and defeat in equal measure. They have learned that true strength lies not in individual prowess, but in standing together against the darkness. When they return to face Zargon's ultimate challenges, they will do so not as three separate adventurers, but as brothers bound by blood, battle, and unbreakable trust."
+                    </div>
+                    <div class="speaker">To Be Continued...</div>
+                    <p>The adventure ends, but the legend has only just begun. Somewhere in the distance, ancient doors creak open, and new challenges await the Bold Brotherhood.</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
