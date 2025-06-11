@@ -806,12 +806,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Adventures of the Bold Brotherhood</title></title>
+<title>The Adventures of the Bold Brotherhood</title>
     <style>
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
-            color: #d4af37;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #e2e8f0;
             margin: 0;
             padding: 20px;
             min-height: 100vh;
@@ -823,22 +823,38 @@
             padding: 20px;
         }
         
-        .timeline-title {
+        .main-title {
             text-align: center;
             font-size: 2.5em;
             margin-bottom: 40px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            color: #ffd700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            color: #60a5fa;
+            font-weight: 700;
         }
         
         .timeline-item {
             display: flex;
             margin-bottom: 40px;
-            background: rgba(139, 69, 19, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border: 2px solid #8b4513;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.6) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 2px solid #3b82f6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .timeline-item:nth-child(even) {
+            border-color: #f97316;
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+        }
+        
+        .timeline-item:nth-child(even):hover {
+            box-shadow: 0 12px 40px rgba(249, 115, 22, 0.3);
         }
         
         .timeline-image {
@@ -850,8 +866,13 @@
             width: 100%;
             height: 150px;
             object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid #d4af37;
+            border-radius: 12px;
+            border: 3px solid #60a5fa;
+            transition: border-color 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-image img {
+            border-color: #fb923c;
         }
         
         .timeline-content {
@@ -860,49 +881,136 @@
         
         .timeline-title {
             font-size: 1.4em;
-            color: #ffd700;
+            color: #60a5fa;
             margin-bottom: 10px;
-            font-weight: bold;
+            font-weight: 700;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-title {
+            color: #fb923c;
         }
         
         .timeline-description {
             line-height: 1.6;
-            color: #e6d3a3;
+            color: #cbd5e1;
+            font-size: 1.05em;
         }
         
         .quote {
             font-style: italic;
-            color: #ffebcd;
-            background: rgba(139, 69, 19, 0.3);
-            padding: 10px;
-            border-left: 4px solid #d4af37;
-            margin: 10px 0;
+            color: #f1f5f9;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(30, 58, 138, 0.3) 100%);
+            padding: 15px;
+            border-left: 4px solid #60a5fa;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .timeline-item:nth-child(even) .quote {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(154, 52, 18, 0.3) 100%);
+            border-left-color: #fb923c;
         }
         
         .character-name {
             font-weight: bold;
-            color: #ffd700;
+            color: #60a5fa;
         }
+        
+        .timeline-item:nth-child(even) .character-name {
+            color: #fb923c;
+        }
+        
         .turn-details {
-    background: #ecf0f1;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .timeline-item:nth-child(even) .turn-details {
+            border-color: rgba(249, 115, 22, 0.3);
+        }
 
-.speaker {
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
-}
+        .speaker {
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+            font-size: 1.05em;
+        }
+        
+        .timeline-item:nth-child(even) .speaker {
+            color: #fb923c;
+        }
 
-.dm-note {
-    background: #d1ecf1;
-    border-left: 4px solid #17a2b8;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
-}
+        .dm-note {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 58, 138, 0.25) 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 0.8rem 1.2rem;
+            margin: 0.8rem 0;
+            border-radius: 6px;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+        
+        .timeline-item:nth-child(even) .dm-note {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(154, 52, 18, 0.25) 100%);
+            border-left-color: #f97316;
+        }
+        
+        .final-door {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #60a5fa;
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.4rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .timeline-item {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .timeline-image {
+                flex: none;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .timeline-title {
+                font-size: 1.2em;
+            }
+        }
+        
+        /* Subtle animations */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+            50% { box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2); }
+        }
+        
+        .timeline-item:nth-child(odd) {
+            animation: glow 4s ease-in-out infinite;
+        }
+        
+        @keyframes glowOrange {
+            0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+            50% { box-shadow: 0 8px 32px rgba(249, 115, 22, 0.2); }
+        }
+        
+        .timeline-item:nth-child(even) {
+            animation: glowOrange 4s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
@@ -916,7 +1024,7 @@
                     <div class="timeline-content">
                         <div class="timeline-title">📖 Prologue: The Call to Adventure</div>
                         <div class="timeline-description">
-                            Zargon opens his ancient tome, setting the stage for epic adventure. Golden flames dance as he prepares to summon three unlikely heroes.
+                            Zargon opens his ancient tome, setting the stage for epic adventure. Azure flames dance as he prepares to summon three unlikely heroes to face the darkness that threatens the realm.
                         </div>
                         <div class="turn-details">
                             <div class="dm-note">
@@ -934,13 +1042,13 @@
                     <div class="timeline-content">
                         <div class="timeline-title">🍺 Turn 1: Entering the Dungeon</div>
                         <div class="timeline-description">
-                            The heroes prepare for adventure, each in their own way. Tyrone casts protective magic, Wulfgar shows skepticism, and Nodrog... finds ale.
+                            The heroes prepare for adventure, each in their own way. Tyrone weaves protective enchantments, Wulfgar shows skepticism toward magic, and Nodrog... discovers something far more important than secret doors.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Turn 1a - Tyrone:</div>
-                            <p>Casts Rock Skin spell</p>
+                            <p>Casts Rock Skin spell for protection</p>
                             <div class="speaker">Turn 1b - Wulfgar:</div>
-                            <p>Stares critically at Tyrone's magic</p>
+                            <p>Stares critically at Tyrone's magical display</p>
                             <div class="speaker">Turn 1c - Nodrog:</div>
                             <p>Searches for secret doors, finds none, grabs ale instead</p>
                             <div class="quote">"Bah! If there's no secret door, at least there's good drink!"</div>
@@ -956,16 +1064,16 @@
                     <div class="timeline-content">
                         <div class="timeline-title">⚔️ Turn 2-3: First Blood</div>
                         <div class="timeline-description">
-                            Tyrone opens the first door, revealing goblin scouts. The heroes make quick work of their first enemies.
+                            Tyrone opens the first door, revealing goblin scouts lounging at their watch post. The heroes make quick and brutal work of their first enemies, setting the tone for the battles to come.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Turn 2a - Tyrone:</div>
                             <p>Opens door, reveals 2 Goblins at table</p>
-                            <div class="dm-note">"My goblin scouts have been discovered!"</div>
+                            <div class="dm-note">"My goblin scouts have been discovered! But they shall not die in vain!"</div>
                             <div class="speaker">Combat Results:</div>
                             <p>Tyrone: Partial hit on Goblin #1<br>
-                            Nodrog: 2 hits, severely wounds goblin<br>
-                            Wulfgar: 2 hits, severely wounds Goblin #2</p>
+                            Nodrog: 2 devastating hits, severely wounds goblin<br>
+                            Wulfgar: 2 crushing blows, severely wounds Goblin #2</p>
                         </div>
                     </div>
                 </div>
@@ -978,17 +1086,17 @@
                     <div class="timeline-content">
                         <div class="timeline-title">🏃‍♂️ Turn 4-5: The Abomination Chase</div>
                         <div class="timeline-description">
-                            Tyrone discovers a chamber with an Abomination and Orc, immediately shuts the door. The party splits, leading to a dangerous chase.
+                            Tyrone discovers a chamber housing an Abomination and Orc, immediately slamming the door shut. The party splits under pressure, leading to a dangerous chase through the dungeon corridors.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Turn 3 - Tyrone:</div>
                             <p>Opens door, sees Abomination & Orc, immediately shuts it</p>
-                            <div class="dm-note">"Wise choice, elf. But you cannot hide forever."</div>
+                            <div class="dm-note">"Wise choice, elf. But you cannot hide forever from what lurks within."</div>
                             <div class="speaker">Turn 4-5 Results:</div>
-                            <p>Nodrog splits from party, Abomination gives chase<br>
-                            Abomination hits Nodrog (down to 6 HP)<br>
-                            Tyrone delivers killing blow to Abomination<br>
-                            Wulfgar slays the Orc</p>
+                            <p>Nodrog splits from party, Abomination gives relentless chase<br>
+                            Abomination hits Nodrog hard (down to 6 HP)<br>
+                            Tyrone delivers precise killing blow to Abomination<br>
+                            Wulfgar slays the Orc with brutal efficiency</p>
                         </div>
                     </div>
                 </div>
@@ -1001,18 +1109,18 @@
                     <div class="timeline-content">
                         <div class="timeline-title">💀 Turn 7-11: The Dread Warriors</div>
                         <div class="timeline-description">
-                            The heroes face Zargon's elite undead warriors in a tactical battle of retreat and advance.
+                            The heroes face Zargon's elite undead warriors in a tactical battle of strategic retreat and calculated advance. These are no ordinary skeletons—they are seasoned warriors of the darkness.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Turn 7 - New Threat:</div>
                             <p>Tyrone opens room with 2 Dread Warriors</p>
-                            <div class="dm-note">"Now they face my elite undead!"</div>
+                            <div class="dm-note">"Now they face my elite undead! Let's see how they handle true warriors of darkness!"</div>
                             <div class="speaker">Key Moments:</div>
-                            <p>Nodrog stumbles (rolled 2)<br>
-                            Dread Warrior hits Tyrone for 2</p>
+                            <p>Nodrog stumbles critically (rolled 2)<br>
+                            Dread Warrior strikes Tyrone for 2 damage</p>
                             <div class="quote">Tyrone: "Hot damn!" - Flees at full speed</div>
                             <div class="speaker">Turn 11 - Victory:</div>
-                            <p>Wulfgar delivers 3-hit killing blow to final Dread Warrior</p>
+                            <p>Wulfgar delivers devastating 3-hit killing blow to final Dread Warrior</p>
                         </div>
                     </div>
                 </div>
@@ -1025,17 +1133,17 @@
                     <div class="timeline-content">
                         <div class="timeline-title">🗿 Turn 13-15: Confronting Verog</div>
                         <div class="timeline-description">
-                            The heroes discover Verog the Gargoyle on his massive throne, flanked by orcs and a dread warrior.
+                            The heroes discover Verog the Gargoyle seated upon his massive obsidian throne, flanked by loyal orcs and a dread warrior. The chamber radiates menace and ancient power.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Turn 13 - The Reveal:</div>
-                            <p>Tyrone opens door to throne room</p>
+                            <p>Tyrone opens door to the imposing throne room</p>
                             <div class="quote">Tyrone: "Oh, nah, this ain't right! This some real bad juju!"</div>
-                            <div class="dm-note">"Behold Verog the Gargoyle! See how you fare against true power!"</div>
+                            <div class="dm-note">"Behold Verog the Gargoyle! See how you fare against true power and ancient malice!"</div>
                             <div class="speaker">Turn 14-15:</div>
-                            <p>Heroes split and flee, systematically eliminate guards<br>
+                            <p>Heroes split and flee strategically, systematically eliminate guards<br>
                             Tyrone slays first Orc: "That's right, homie. Sit down."<br>
-                            Wulfgar & Tyrone team up for second Orc</p>
+                            Wulfgar & Tyrone coordinate attack on second Orc</p>
                         </div>
                     </div>
                 </div>
@@ -1048,18 +1156,18 @@
                     <div class="timeline-content">
                         <div class="timeline-title">⚔️ Turn 17-18: The Fall of Verog</div>
                         <div class="timeline-description">
-                            Wulfgar declares he's "tired of pussyfooting around" and leads the final assault on the gargoyle lieutenant.
+                            Wulfgar declares he's "tired of pussyfooting around" and leads the final assault on the gargoyle lieutenant. The stone beast rises from his throne for the ultimate confrontation.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Turn 17:</div>
                             <div class="quote">Wulfgar: "I'm tired of pussyfooting around!"</div>
-                            <p>Verog stands and attacks, hits Wulfgar for 2<br>
-                            Tyrone attacks for 1 hit<br>
-                            Wulfgar reduces Verog to 1 HP</p>
+                            <p>Verog stands and attacks with stone fists, hits Wulfgar for 2<br>
+                            Tyrone attacks with precision for 1 hit<br>
+                            Wulfgar's assault reduces Verog to 1 HP</p>
                             <div class="speaker">Turn 18 - Final Blow:</div>
-                            <p>Verog strikes Tyrone for 2</p>
+                            <p>Verog strikes Tyrone desperately for 2</p>
                             <div class="quote">Tyrone: "Oh, hell no! This stone-faced freak really out here trying to ruin my day!"</div>
-                            <p>Wulfgar delivers killing blow - Verog defeated!</p>
+                            <p>Wulfgar delivers the killing blow - Verog crumbles to dust!</p>
                         </div>
                     </div>
                 </div>
@@ -1072,13 +1180,13 @@
                     <div class="timeline-content">
                         <div class="timeline-title">💰 Turn 19: Golden Discovery</div>
                         <div class="timeline-description">
-                            After Verog's defeat, Nodrog searches the throne room and discovers a substantial treasure cache.
+                            After Verog's defeat, Nodrog searches the throne room methodically and discovers a substantial treasure cache hidden within the gargoyle's domain.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Nodrog's Search:</div>
-                            <p>Discovers 120 gold pieces!</p>
+                            <p>Discovers 120 gold pieces in Verog's treasure hoard!</p>
                             <div class="quote">Nodrog: "Finally, some damn compensation for this mess!"</div>
-                            <div class="dm-note">Zargon: "Take your coins, heroes. You've earned them in blood."</div>
+                            <div class="dm-note">Zargon: "Take your coins, heroes. You've earned them in blood and bravery."</div>
                         </div>
                     </div>
                 </div>
@@ -1091,15 +1199,15 @@
                     <div class="timeline-content">
                         <div class="timeline-title">🧙‍♂️ Turn 20-28: Wandering Encounters</div>
                         <div class="timeline-description">
-                            Zargon sends various creatures to harass the heroes as they explore deeper into the dungeon.
+                            Zargon sends various creatures to harass and test the heroes as they explore deeper into his domain. Each encounter reveals more of the dungeon's dark secrets.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Multiple Encounters:</div>
                             <p>Turn 20: Wandering Orc - Wulfgar slays immediately<br>
-                            Turn 21: 2 Goblins - Quick elimination</p>
+                            Turn 21: 2 Goblins - Quick and decisive elimination</p>
                             <div class="quote">Tyrone: "Aww, hell no. I ain't about to deal with no sneaky little goblin nonsense today!"</div>
-                            <p>Turn 26: Orc & Goblin at table - Both defeated<br>
-                            Turn 28: 2 Skeleton ambush - Destroyed</p>
+                            <p>Turn 26: Orc & Goblin at table - Both defeated swiftly<br>
+                            Turn 28: 2 Skeleton ambush - Destroyed with prejudice</p>
                         </div>
                     </div>
                 </div>
@@ -1112,20 +1220,20 @@
                     <div class="timeline-content">
                         <div class="timeline-title">🏺 Turn 29-31: Tyrone's Final Stand</div>
                         <div class="timeline-description">
-                            In the ultimate test, Tyrone faces the ancient mummy alone after his companions fall in the final chamber.
+                            In the ultimate test of heroism, Tyrone faces the ancient mummy and its zombie minions alone after his companions fall in the treacherous final chamber. This is where legends are born.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Turn 29 - Final Chamber:</div>
-                            <p>Tyrone opens door: Mummy & 2 Zombies await</p>
-                            <div class="dm-note">"My most powerful undead! They must not pass!"</div>
+                            <p>Tyrone opens door: Ancient Mummy & 2 Zombies await</p>
+                            <div class="dm-note">"My most powerful undead servants! They must not pass into the inner sanctum!"</div>
                             <div class="speaker">The Climax:</div>
-                            <p>Zombies attack Wulfgar (down to 1 HP)<br>
-                            Mummy cripples Wulfgar - falls unconscious<br>
-                            Mummy defeats Nodrog<br>
-                            Tyrone stands alone</p>
+                            <p>Zombies swarm Wulfgar (reduced to 1 HP)<br>
+                            Mummy's curse cripples Wulfgar - falls unconscious<br>
+                            Mummy overwhelms and defeats Nodrog<br>
+                            Tyrone stands alone against the darkness</p>
                             <div class="speaker">Turn 31 - Solo Victory:</div>
-                            <p>Tyrone kills the mummy and final zombie</p>
-                            <div class="dm-note">Zargon: "Impossible! The elf stands victorious!"</div>
+                            <p>Tyrone destroys the mummy and final zombie in heroic combat</p>
+                            <div class="dm-note">Zargon: "Impossible! The elf stands victorious against all odds!"</div>
                         </div>
                     </div>
                 </div>
@@ -1133,27 +1241,27 @@
                 <!-- Epilogue -->
                 <div class="timeline-item">
                     <div class="timeline-image">
-                        <div style="background: #2c3e50; color: white; padding: 2rem; text-align: center; font-size: 1.2rem;">
+                        <div class="final-door">
                             🚪 The Final Door
                         </div>
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-title">🚪 Epilogue: The Final Choice</div>
                         <div class="timeline-description">
-                            Faced with the final door and his fallen comrades, Tyrone makes a crucial decision that will define his legend.
+                            Faced with the final door and his fallen comrades, Tyrone makes a crucial decision that will define his legend. Sometimes wisdom lies not in what we conquer, but in knowing when to retreat.
                         </div>
                         <div class="turn-details">
                             <div class="speaker">Tyrone's Decision:</div>
-                            <p>Chooses to turn around and leave the dungeon</p>
-                            <div class="quote">Tyrone: "Maybe another day."</div>
+                            <p>Chooses to turn around and leave the dungeon with his companions</p>
+                            <div class="quote">Tyrone: "Maybe another day. These brothers need healing, and the treasure's good enough for now."</div>
                             <div class="dm-note">
-                                <strong>Zargon's Final Thoughts:</strong> "The heroes retreat, but they have proven their worth. The final door remains unopened, its secrets safe. But I sense they will return, stronger than before."
+                                <strong>Zargon's Final Thoughts:</strong> "The heroes retreat, but they have proven their worth beyond question. The final door remains unopened, its secrets safe for now. But I sense they will return, stronger and more determined than before. The Brotherhood has been forged in battle."
                             </div>
                             <div class="speaker">Final Status:</div>
-                            <p><strong>Wulfgar:</strong> Defeated but alive<br>
-                            <strong>Nodrog:</strong> Defeated but alive<br>
-                            <strong>Tyrone:</strong> Victorious survivor<br>
-                            <strong>Treasure:</strong> 120 gold pieces</p>
+                            <p><strong>Wulfgar:</strong> Defeated but alive, carried by Tyrone<br>
+                            <strong>Nodrog:</strong> Defeated but alive, supported by his brothers<br>
+                            <strong>Tyrone:</strong> Victorious survivor and hero of the hour<br>
+                            <strong>Treasure:</strong> 120 gold pieces to fund future adventures</p>
                         </div>
                     </div>
                 </div>
